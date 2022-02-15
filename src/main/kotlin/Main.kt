@@ -40,7 +40,7 @@ fun App() {
 fun Greeting(text:String) {
     Column (horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text, style = TextStyle(color = Color.LightGray))
-        Text("Hello, World!", style = TextStyle(color = Color.Green))
+        Text("Hello, World!", style = TextStyle(color = Color.Blue))
         Text("Hello, Second World!", style = TextStyle(color = Color.Red))
 
         var input by remember { mutableStateOf("") }
