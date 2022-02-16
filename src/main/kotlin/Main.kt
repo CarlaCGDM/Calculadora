@@ -12,83 +12,48 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import javax.imageio.ImageIO
 
 @Composable
 @Preview
 fun App() {
+
     var text by remember { mutableStateOf("Hello, World!") }
+    var input1 by remember { mutableStateOf("") }
+    var input2 by remember { mutableStateOf("") }
+    var resultado by remember { mutableStateOf(0) }
 
     DesktopMaterialTheme {
-        Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
-            Button(onClick = {
-                text = "Hello, Desktop!"
-            }) {
-                Greeting(text)
+
+        Column (
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+
+
+            Row() {
+                TextField(value = input1, onValueChange = {input1 = it}, modifier = Modifier.padding(5.dp).size(100.dp,60.dp))
+                TextField(value = input2, onValueChange = {input2 = it}, modifier = Modifier.padding(5.dp).size(100.dp,60.dp))
             }
+
+            Button(onClick = {
+                resultado = input1.toInt()*input2.toInt()
+            }) {
+                Text("Multiplicar")
+            }
+
+            Text(resultado.toString(), modifier = Modifier.padding(5.dp))
+
         }
 
     }
 }
-
-@Composable
-fun Greeting(text:String) {
-    Column (horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text, style = TextStyle(color = Color.LightGray))
-        Text("Hello, World!", style = TextStyle(color = Color.Blue))
-        Text("Hello, Second World!", style = TextStyle(color = Color.Red))
-
-        var input by remember { mutableStateOf("") }
-        var input2 by remember { mutableStateOf("") }
-
-        Row (modifier = Modifier.padding(10.dp)) {
-            TextField(
-                modifier = Modifier.size(65.dp).padding(5.dp),
-                value = input,
-                onValueChange = { input = it } ,
-            )
-
-            TextField(
-                modifier = Modifier.size(65.dp).padding(5.dp),
-                value = input2,
-                onValueChange = { input2 = it },
-            )
-
-        }
-        var dato by remember { mutableStateOf(0) }
-        var dato2 by remember { mutableStateOf(0) }
-
-        Button (onClick = { dato = input.toInt(); dato2 = input2.toInt()}) {
-            Text("Multiplicar")
-        }
-
-        Text((dato*dato2).toString())
-    }
-}
-
-@Composable
-@Preview
-fun Calculadora() {
-
-}
-
-
-
-
-
-
-
-
 
 fun main() = application {
-    Window(
-        //icon = crear funcion imageFromFile
-        onCloseRequest = ::exitApplication) {
-        Calculadora()
+    Window(onCloseRequest = ::exitApplication) {
+        App()
     }
 }
+
