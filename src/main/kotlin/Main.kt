@@ -34,14 +34,12 @@ fun App() {
         }
     }
 
-
-    var input1 by remember { mutableStateOf("") }
-    var input2 by remember { mutableStateOf("") }
-    var resultado by remember { mutableStateOf(0) }
+    var especieElegida:String? by remember { mutableStateOf(null) }
 
     MaterialTheme (colors = lightColors(
-        primary = Color.Red,
+        primary = Color.LightGray,
         secondary = Color.Green,
+
     )) {
 
         Column (
@@ -50,32 +48,37 @@ fun App() {
         ) {
 
             Row() {
+
+                Button( modifier = Modifier.padding(5.dp), onClick = {especieElegida = "SQUIRTLE"}) {
+                    Image(
+                        bitmap = useResource("Squirtle/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
+                        modifier = Modifier.size(60.dp)
+                    )}
+
+                Button( modifier = Modifier.padding(5.dp), onClick = {especieElegida = "CHARMANDER"}) {
+                    Image(
+                        bitmap = useResource("Charmander/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
+                        modifier = Modifier.size(60.dp)
+                    )}
+
+                Button( modifier = Modifier.padding(5.dp), onClick = {especieElegida = "PICHU"}) {
+                    Image(
+                        bitmap = useResource("Pichu/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
+                        modifier = Modifier.size(60.dp)
+                    )}
+
+                Button( modifier = Modifier.padding(5.dp), onClick = {especieElegida = "BULBASAUR"}) {
                 Image(
-                    bitmap = useResource("Pikachu/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
-                    modifier = Modifier.padding(5.dp).size(60.dp)
-                )
-
-                Image(
-                    bitmap = useResource("Charmander/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
-                    modifier = Modifier.padding(5.dp).size(60.dp)
-                )
+                    bitmap = useResource("Bulbasaur/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
+                    modifier = Modifier.size(60.dp)
+                )}
 
 
             }
 
-            Row() {
-                TextField(value = input1, onValueChange = {input1 = it}, modifier = Modifier.padding(5.dp).size(100.dp,60.dp))
-                TextField(value = input2, onValueChange = {input2 = it}, modifier = Modifier.padding(5.dp).size(100.dp,60.dp))
+            Button (onClick = {}) {
+                Text(if (especieElegida != null) {"Jugar con $especieElegida"} else {"Elige un Pokémon"})
             }
-
-            Button(modifier = Modifier.padding(5.dp).clip(RoundedCornerShape(50.dp)), onClick = {
-                resultado = input1.toInt()*input2.toInt()
-            }) {
-                Text("Multiplicar")
-            }
-
-            Text(resultado.toString(), modifier = Modifier.padding(5.dp))
-            Text(frame.toString(), modifier = Modifier.padding(5.dp))
 
         }
 
