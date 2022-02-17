@@ -29,8 +29,8 @@ fun App() {
 
     composableScope.launch {
         while(true) {
-            delay(20L)
-            if (frame == 33) {frame = 1} else {frame++}
+            delay(20 L)
+            if (frame == 29) {frame = 1} else {frame++}
         }
     }
 
