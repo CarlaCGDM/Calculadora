@@ -25,12 +25,18 @@ import kotlinx.coroutines.launch
 fun App() {
 
     val composableScope = rememberCoroutineScope()
-    var frame by remember { mutableStateOf(1) }
+    var squirtleFrame by remember { mutableStateOf(1) }
+    var bulbasaurFrame by remember { mutableStateOf(1) }
+    var pichuFrame by remember { mutableStateOf(1) }
+    var charmanderFrame by remember { mutableStateOf(1) }
 
     composableScope.launch {
         while(true) {
-            delay(20 L)
-            if (frame == 29) {frame = 1} else {frame++}
+            delay(20L)
+            if (squirtleFrame == 29) {squirtleFrame = 1} else {squirtleFrame++}
+            if (bulbasaurFrame == 41) {bulbasaurFrame = 1} else {bulbasaurFrame++}
+            if (pichuFrame == 47) {pichuFrame = 1} else {pichuFrame++}
+            if (charmanderFrame == 69) {charmanderFrame = 1} else {charmanderFrame++}
         }
     }
 
@@ -51,25 +57,25 @@ fun App() {
 
                 Button( modifier = Modifier.padding(5.dp), onClick = {especieElegida = "SQUIRTLE"}) {
                     Image(
-                        bitmap = useResource("Squirtle/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
+                        bitmap = useResource("Squirtle/frame (" + squirtleFrame + ").png") { loadImageBitmap(it) }, "imagen",
                         modifier = Modifier.size(60.dp)
                     )}
 
                 Button( modifier = Modifier.padding(5.dp), onClick = {especieElegida = "CHARMANDER"}) {
                     Image(
-                        bitmap = useResource("Charmander/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
+                        bitmap = useResource("Charmander/frame (" + charmanderFrame + ").png") { loadImageBitmap(it) }, "imagen",
                         modifier = Modifier.size(60.dp)
                     )}
 
                 Button( modifier = Modifier.padding(5.dp), onClick = {especieElegida = "PICHU"}) {
                     Image(
-                        bitmap = useResource("Pichu/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
+                        bitmap = useResource("Pichu/frame (" + pichuFrame + ").png") { loadImageBitmap(it) }, "imagen",
                         modifier = Modifier.size(60.dp)
                     )}
 
                 Button( modifier = Modifier.padding(5.dp), onClick = {especieElegida = "BULBASAUR"}) {
                 Image(
-                    bitmap = useResource("Bulbasaur/ (" + frame + ").png") { loadImageBitmap(it) }, "imagen",
+                    bitmap = useResource("Bulbasaur/frame (" + bulbasaurFrame + ").png") { loadImageBitmap(it) }, "imagen",
                     modifier = Modifier.size(60.dp)
                 )}
 
